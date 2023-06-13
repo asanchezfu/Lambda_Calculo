@@ -128,6 +128,12 @@ class proyectoLambdaParser ( Parser ):
             if hasattr( listener, "exitAdd" ):
                 listener.exitAdd(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAdd" ):
+                return visitor.visitAdd(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class MultContext(ExpressionContext):
 
@@ -152,6 +158,12 @@ class proyectoLambdaParser ( Parser ):
             if hasattr( listener, "exitMult" ):
                 listener.exitMult(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitMult" ):
+                return visitor.visitMult(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class ApplicationContext(ExpressionContext):
 
@@ -173,6 +185,12 @@ class proyectoLambdaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitApplication" ):
                 listener.exitApplication(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitApplication" ):
+                return visitor.visitApplication(self)
+            else:
+                return visitor.visitChildren(self)
 
 
     class RecRuleContext(ExpressionContext):
@@ -202,6 +220,12 @@ class proyectoLambdaParser ( Parser ):
             if hasattr( listener, "exitRecRule" ):
                 listener.exitRecRule(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRecRule" ):
+                return visitor.visitRecRule(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class AbstractionContext(ExpressionContext):
 
@@ -227,6 +251,12 @@ class proyectoLambdaParser ( Parser ):
             if hasattr( listener, "exitAbstraction" ):
                 listener.exitAbstraction(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitAbstraction" ):
+                return visitor.visitAbstraction(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class VariableContext(ExpressionContext):
 
@@ -244,6 +274,12 @@ class proyectoLambdaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitVariable" ):
                 listener.exitVariable(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitVariable" ):
+                return visitor.visitVariable(self)
+            else:
+                return visitor.visitChildren(self)
 
 
     class IfRuleContext(ExpressionContext):
@@ -300,6 +336,12 @@ class proyectoLambdaParser ( Parser ):
             if hasattr( listener, "exitIfRule" ):
                 listener.exitIfRule(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitIfRule" ):
+                return visitor.visitIfRule(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class ParenExpressionContext(ExpressionContext):
 
@@ -323,6 +365,12 @@ class proyectoLambdaParser ( Parser ):
             if hasattr( listener, "exitParenExpression" ):
                 listener.exitParenExpression(self)
 
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitParenExpression" ):
+                return visitor.visitParenExpression(self)
+            else:
+                return visitor.visitChildren(self)
+
 
     class IntegerContext(ExpressionContext):
 
@@ -340,6 +388,12 @@ class proyectoLambdaParser ( Parser ):
         def exitRule(self, listener:ParseTreeListener):
             if hasattr( listener, "exitInteger" ):
                 listener.exitInteger(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitInteger" ):
+                return visitor.visitInteger(self)
+            else:
+                return visitor.visitChildren(self)
 
 
 
