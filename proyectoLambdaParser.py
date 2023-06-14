@@ -5,8 +5,7 @@ from io import StringIO
 import sys
 if sys.version_info[1] > 5:
 	from typing import TextIO
-else:
-	from typing.io import TextIO
+
 
 def serializedATN():
     return [

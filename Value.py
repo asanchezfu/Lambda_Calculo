@@ -1,4 +1,7 @@
 from Abstraction import *
+from Variable import *
+from RecFunction import *
+from Calcul import *
 
 
 class Value:

@@ -3,18 +3,20 @@ from antlr4 import *
 from proyectoLambdaLexer import proyectoLambdaLexer
 from proyectoLambdaParser import *
 from proyectoLambdaVisitor import proyectoLambdaVisitor
- 
+from ReduceVisitor import ReduceVisitor
+from FreeVariableVisitor import FreeVariableVisitor
+
 def main(argv):
     input_stream = FileStream('entrada.txt', encoding='utf-8')
     lexer = proyectoLambdaLexer(input_stream)
     stream = CommonTokenStream(lexer)
     parser = proyectoLambdaParser(stream)
     tree = parser.expression()
-    treeString = tree.toStringTree(recog=parser)
-    print(treeString)
 
-    visitor = proyectoLambdaVisitor
-    result = visitor.visitParenExpression(tree)
+    freeVariableVisitor = FreeVariableVisitor()
+    freeVariableVisitor.visit(tree)
+    visitor = ReduceVisitor(freeVariableVisitor.get_free_variables())
+    result = visitor.visit(tree)
 
     print(result)
 

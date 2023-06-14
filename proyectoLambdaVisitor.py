@@ -11,6 +11,7 @@ class proyectoLambdaVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by proyectoLambdaParser#add.
     def visitAdd(self, ctx:proyectoLambdaParser.AddContext):
+        print("MADRE MÍA EL BICHO SIUUUU")
         return self.visitChildren(ctx)
 
 

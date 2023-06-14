@@ -2,12 +2,17 @@ from proyectoLambdaVisitor import proyectoLambdaVisitor
 from proyectoLambdaParser import proyectoLambdaParser
 from Apply import *
 from Value import *
+from Abstraction import *
+from Variable import *
+from RecFunction import *
+from Calcul import *
+from IfStat import *
 
 class LambdaBasicVisitor(proyectoLambdaVisitor):
     def visitApplication(self, ctx):
         left = self.visit(ctx.expression(0))
         right = self.visit(ctx.expression(1))
-        if isinstance(ctx.parent, proyectoLambdaParser.ParenExpressionContext):
+        if isinstance(ctx.parentCtx, proyectoLambdaParser.ParenExpressionContext):
             return Value(Apply(left.value, right.value, True))
         else:
             return Value(Apply(left.value, right.value, False))
@@ -15,7 +20,7 @@ class LambdaBasicVisitor(proyectoLambdaVisitor):
     def visitAbstraction(self, ctx):
         varUnderLambda = ctx.VAR().getText()
         expression = self.visit(ctx.expression())
-        if isinstance(ctx.parent, proyectoLambdaParser.ParenExpressionContext):
+        if isinstance(ctx.parentCtx, proyectoLambdaParser.ParenExpressionContext):
             return Value(Abstraction(varUnderLambda, expression.value, False))
         else:
             return Value(Abstraction(varUnderLambda, expression.value, True))
@@ -112,6 +117,8 @@ class LambdaBasicVisitor(proyectoLambdaVisitor):
         left = self.visit(ctx.expression(0))
         right = self.visit(ctx.expression(1))
 
+        print("MADRE MÍA EL BICHO SIUUUU")
+
         op_type = ctx.op.type
 
         if op_type == proyectoLambdaParser.PLUS:
@@ -127,4 +134,4 @@ class LambdaBasicVisitor(proyectoLambdaVisitor):
                 return Value(Calcul(Value(left), '-', Value(right)))
 
         else:
-            raise Exception("L'opérateur de l'expression est inconnu (mais cela ne devrait pas arriver)")
+            raise Exception("El operador es una expresión desconocida.)")

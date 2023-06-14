@@ -1,17 +1,19 @@
+import re
+
 class Abstraction:
-    def init(self, var, exp, is_inside):
+    def __init__(self, var, expression, is_inside):
         self.var = var
-        self.exp = exp
+        self.expression = expression
         self.is_inside = is_inside
 
     def get_var(self):
         return self.var
 
-    def get_exp(self):
-        return self.exp
+    def get_expression(self):
+        return self.expression
 
-    def set_exp(self, exp):
-        self.exp = exp
+    def set_expression(self, expression):
+        self.expression = expression
 
     def is_inside(self):
         return self.is_inside
@@ -19,11 +21,11 @@ class Abstraction:
     def set_inside(self, is_inside):
         self.is_inside = is_inside
 
-    def str(self):
+    def __str__(self):
         if self.is_inside:
-            return "λ" + self.var + "." + str(self.exp)
+            return "λ" + self.var + "." + str(self.expression)
         else:
-            return "(λ" + self.var + "." + str(self.exp) + ")"
+            return "(λ" + self.var + "." + str(self.expression) + ")"
 
     def can_apply(self):
-        return bool(re.search(r"\b" + self.var + r"\b", str(self.exp)))
+        return bool(re.search(r"\b" + self.var + r"\b", str(self.expression)))
