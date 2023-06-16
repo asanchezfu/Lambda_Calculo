@@ -7,6 +7,8 @@ class LambdaBasicVisitor(proyectoLambdaVisitor):
         print("Reconozco la suma")
         left = self.visit(ctx.expression(0))
         right = self.visit(ctx.expression(1))
+        print(right[1])
+        print(left[1])
         return left + right
     
     def visitMult(self, ctx:proyectoLambdaParser.AddContext):
